@@ -50,8 +50,8 @@ jobs:
       - name: Install demo bundles
         run: |
           BUNDLE_USER_HOME=/tmp/bundle bundle install
-          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
-          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install
+          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install
       - name: Run coverage suite
         run: COVERAGE=true BUNDLE_USER_HOME=/tmp/bundle bundle exec rake
       - name: Upload coverage artifacts
@@ -91,8 +91,8 @@ jobs:
         run: npm install
       - name: Install demo bundles
         run: |
-          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
-          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install
+          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
       - name: Run Playwright smoke tests
