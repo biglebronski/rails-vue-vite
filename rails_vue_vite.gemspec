@@ -10,13 +10,13 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Rails 7+ integration for Vue and Vite with predictable helpers and tests."
   spec.description = "rails_vue_vite connects Rails 7+ apps to a Vite-powered Vue frontend through view helpers, manifest resolution, and installation generators."
-  spec.homepage = "https://github.com/untrackedstudio/rails_vue_vite"
+  spec.homepage = "https://github.com/untrackedstudio/rails-vue-vite"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/untrackedstudio/rails_vue_vite"
-  spec.metadata["changelog_uri"] = "https://github.com/untrackedstudio/rails_vue_vite/releases"
+  spec.metadata["source_code_uri"] = "https://github.com/untrackedstudio/rails-vue-vite"
+  spec.metadata["changelog_uri"] = "https://github.com/untrackedstudio/rails-vue-vite/releases"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   gemspec = File.basename(__FILE__)

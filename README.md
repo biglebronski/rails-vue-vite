@@ -17,7 +17,7 @@ Two demo apps live in this repo:
 
 ## Requirements
 
-- Ruby 3.1+
+- Ruby 3.2+
 - Rails 7.0+
 - Node.js and npm
 
