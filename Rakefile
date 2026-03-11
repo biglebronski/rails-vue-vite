@@ -40,31 +40,45 @@ def bundle_command(*args)
   [Gem.ruby, "-S", "bundle", *args].join(" ")
 end
 
+def run_unbundled(env, command, chdir:)
+  Bundler.with_unbundled_env do
+    sh(env, command, chdir: chdir)
+  end
+end
+
 namespace :dummy_spa do
   task :bundle do
     begin
-      sh(dummy_spa_env, bundle_command("check"), chdir: dummy_spa_root)
+      run_unbundled(dummy_spa_env, bundle_command("check"), chdir: dummy_spa_root)
     rescue StandardError
-      sh(dummy_spa_env, bundle_command("install"), chdir: dummy_spa_root)
+      run_unbundled(dummy_spa_env, bundle_command("install"), chdir: dummy_spa_root)
     end
   end
 
   task test: :bundle do
-    sh(dummy_spa_env, bundle_command("exec", "rails", "test", "test/integration/spa_flow_test.rb"), chdir: dummy_spa_root)
+    run_unbundled(
+      dummy_spa_env,
+      bundle_command("exec", "rails", "test", "test/integration/spa_flow_test.rb"),
+      chdir: dummy_spa_root
+    )
   end
 end
 
 namespace :dummy_html do
   task :bundle do
     begin
-      sh(dummy_html_env, bundle_command("check"), chdir: dummy_html_root)
+      run_unbundled(dummy_html_env, bundle_command("check"), chdir: dummy_html_root)
     rescue StandardError
-      sh(dummy_html_env, bundle_command("install"), chdir: dummy_html_root)
+      run_unbundled(dummy_html_env, bundle_command("install"), chdir: dummy_html_root)
     end
   end
 
   task test: :bundle do
-    sh(dummy_html_env, bundle_command("exec", "rails", "test", "test/integration/html_flow_test.rb"), chdir: dummy_html_root)
+    run_unbundled(
+      dummy_html_env,
+      bundle_command("exec", "rails", "test", "test/integration/html_flow_test.rb"),
+      chdir: dummy_html_root
+    )
   end
 end
 
