@@ -45,7 +45,7 @@ namespace :dummy_spa do
     begin
       sh(dummy_spa_env, bundle_command("check"), chdir: dummy_spa_root)
     rescue StandardError
-      sh(dummy_spa_env, bundle_command("install", "--local"), chdir: dummy_spa_root)
+      sh(dummy_spa_env, bundle_command("install"), chdir: dummy_spa_root)
     end
   end
 
@@ -59,7 +59,7 @@ namespace :dummy_html do
     begin
       sh(dummy_html_env, bundle_command("check"), chdir: dummy_html_root)
     rescue StandardError
-      sh(dummy_html_env, bundle_command("install", "--local"), chdir: dummy_html_root)
+      sh(dummy_html_env, bundle_command("install"), chdir: dummy_html_root)
     end
   end
 
