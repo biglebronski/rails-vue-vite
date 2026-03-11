@@ -9,7 +9,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: "BUNDLE_USER_HOME=/tmp/bundle /Users/dom/.rvm/wrappers/ruby-3.3.2/bundle exec rails server -p 3100",
+      command: "BUNDLE_USER_HOME=/tmp/bundle bundle exec rails server -p 3100",
       cwd: "test/dummy_spa",
       url: "http://127.0.0.1:3100",
       reuseExistingServer: true,
@@ -23,7 +23,7 @@ export default defineConfig({
       timeout: 120_000
     },
     {
-      command: "BUNDLE_USER_HOME=/tmp/bundle /Users/dom/.rvm/wrappers/ruby-3.3.2/bundle exec rails server -p 3101",
+      command: "BUNDLE_USER_HOME=/tmp/bundle bundle exec rails server -p 3101",
       cwd: "test/dummy_html",
       url: "http://127.0.0.1:3101",
       reuseExistingServer: true,
