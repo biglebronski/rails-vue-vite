@@ -1,0 +1,5 @@
+<%%= vite_client_tag %>
+<%%= vite_stylesheet_tag RailsVueVite.config.spa_entrypoint %>
+<%%= vite_javascript_tag RailsVueVite.config.spa_entrypoint %>
+
+<div data-vue-root></div>

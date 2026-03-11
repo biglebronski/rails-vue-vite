@@ -1,0 +1,26 @@
+<% content_for :title, "HTML Demo Home" %>
+
+<section class="hero">
+  <p class="eyebrow">Rails rendered this page and owns the route.</p>
+  <h1>HTML-first demo</h1>
+  <p>
+    This page demonstrates the non-SPA mode: navigation is standard Rails routing,
+    page chrome is rendered on the server, and Vue enhances one component without taking over the whole app.
+  </p>
+</section>
+
+<section class="content-grid">
+  <article class="info-card">
+    <p class="eyebrow">Recommended use</p>
+    <h2>Keep the page server-rendered</h2>
+    <p>
+      Reach for this pattern when you want conventional Rails routes, server-rendered copy, and selective
+      JavaScript where interactivity actually adds value.
+    </p>
+  </article>
+
+  <section
+    data-vue-widget
+    data-items="<%= json_escape(HtmlTodoStore.items.to_json) %>"
+  ></section>
+</section>

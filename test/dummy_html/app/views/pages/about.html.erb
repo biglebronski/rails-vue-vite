@@ -1,0 +1,25 @@
+<% content_for :title, "HTML Demo About" %>
+
+<section class="hero">
+  <p class="eyebrow">Rails rendered this page too.</p>
+  <h1>About the HTML-first mode</h1>
+  <p>
+    Use this mode when you want server-rendered navigation, HTML responses, and selective Vue enhancement
+    rather than a full client-side application shell.
+  </p>
+</section>
+
+<section class="content-grid single-column">
+  <article class="info-card">
+    <p class="eyebrow">Why this mode exists</p>
+    <h2>Not every Vue app needs to own the whole page</h2>
+    <p>
+      This pattern is useful for marketing pages, dashboards with a few interactive controls, and internal tools
+      where Rails should stay in charge of routes, rendering, and request lifecycles.
+    </p>
+    <p>
+      The Vue component can still talk back to Rails for persistence, but the navigation model stays simple and
+      stateless.
+    </p>
+  </article>
+</section>

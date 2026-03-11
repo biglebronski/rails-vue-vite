@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+RailsVueVite.configure do |config|
+  config.mode = Rails.env.development? ? "development" : "production"
+  config.dev_server_url = ENV.fetch("VITE_DEV_SERVER_URL", "http://localhost:5173")
+  config.source_code_dir = "app/frontend"
+  config.entrypoints_dir = "entrypoints"
+  config.public_output_dir = "vite"
+  config.build_output_dir = File.join("public", config.public_output_dir)
+  config.manifest_path = File.join(config.build_output_dir, ".vite", "manifest.json")
+  config.spa_mode = <%= options["spa"] ? "true" : "false" %>
+  config.spa_entrypoint = "application"
+  config.spa_mount_path = "/"
+end

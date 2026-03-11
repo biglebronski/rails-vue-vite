@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }} / ${{ matrix.appraisal }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ruby: "3.1"
+            appraisal: rails-7-0
+          - ruby: "3.2"
+            appraisal: rails-7-1
+          - ruby: "3.3"
+            appraisal: rails-7-2
+          - ruby: "3.3"
+            appraisal: rails-8-0
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Install appraisal bundles
+        run: bundle exec appraisal install
+      - name: Run tests
+        run: bundle exec appraisal ${{ matrix.appraisal }} rake
+
+  coverage:
+    runs-on: ubuntu-latest
+    name: Coverage
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Install demo bundles
+        run: |
+          BUNDLE_USER_HOME=/tmp/bundle bundle install
+          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+      - name: Run coverage suite
+        run: COVERAGE=true BUNDLE_USER_HOME=/tmp/bundle bundle exec rake
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            coverage
+            test/dummy_spa/coverage
+            test/dummy_html/coverage
+      - name: Coverage summary
+        run: |
+          ruby -rjson -e 'paths=%w[coverage/.last_run.json test/dummy_spa/coverage/.last_run.json test/dummy_html/coverage/.last_run.json]; puts "## Coverage"; paths.each do |path| next unless File.exist?(path); data=JSON.parse(File.read(path)); puts "- #{path}: #{data["result"]["line"]}% lines, #{data["result"]["branch"]}% branches"; end' >> "$GITHUB_STEP_SUMMARY"
+
+  e2e:
+    runs-on: ubuntu-latest
+    name: Playwright
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - name: Install root Playwright deps
+        run: npm install
+      - name: Install SPA demo deps
+        working-directory: test/dummy_spa
+        run: npm install
+      - name: Install HTML demo deps
+        working-directory: test/dummy_html
+        run: npm install
+      - name: Install demo bundles
+        run: |
+          cd test/dummy_spa && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+          cd ../dummy_html && BUNDLE_USER_HOME=/tmp/bundle bundle install --local
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright smoke tests
+        run: npm run test:e2e

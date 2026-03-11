@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.16), transparent 30%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: #0f172a;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.shell {
+  width: min(56rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 1.25rem 0 0;
+}
+
+.masthead {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  padding: 0.65rem 0.95rem;
+  text-decoration: none;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.92);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.site-nav a.is-active {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.site-kicker {
+  margin: 0.45rem 0 0;
+  max-width: 28rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.main-shell {
+  padding: 2.5rem 0 4rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.hero {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+}
+
+.hero h1 {
+  margin: 0.45rem 0 0.75rem;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 0.95;
+}
+
+.hero p:last-child {
+  margin-bottom: 0;
+  max-width: 42rem;
+  line-height: 1.6;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) minmax(0, 42rem);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.content-grid.single-column {
+  grid-template-columns: minmax(0, 42rem);
+}
+
+.info-card {
+  padding: 1.35rem 1.4rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.info-card h2 {
+  margin: 0.45rem 0 0.75rem;
+  font-size: 1.3rem;
+}
+
+.info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.site-footer {
+  padding: 0 0 2.5rem;
+}
+
+.footer-inner {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 760px) {
+  .masthead {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,14 @@
+import { createRouter, createWebHistory } from "vue-router";
+
+const HomePage = {
+  template: "<section><h1>RailsVueVite SPA</h1><p>Vue Router is controlling the page shell.</p></section>",
+};
+
+const routes = [
+  { path: "/", component: HomePage },
+];
+
+export default createRouter({
+  history: createWebHistory(),
+  routes,
+});

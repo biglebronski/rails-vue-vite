@@ -1,0 +1,20 @@
+import { createApp } from "vue";
+<% if options["spa"] -%>
+import App from "../App.vue";
+import router from "../router";
+<% end -%>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const element = document.querySelector("[data-vue-root]");
+  if (!element) return;
+
+<% if options["spa"] -%>
+  createApp(App).use(router).mount(element);
+<% else -%>
+  const Root = {
+    template: "<div data-rails-vue-vite-root>Vue + Vite is wired into Rails.</div>",
+  };
+
+  createApp(Root).mount(element);
+<% end -%>
+});

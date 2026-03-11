@@ -1,0 +1,14 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+node_modules/
+.playwright-browsers/
+test-results/
+test/tmp/
+test/dummy_spa/log/*.log
+test/dummy_html/log/*.log

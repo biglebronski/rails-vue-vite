@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Dummy Html" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag "application" %>
+    <style>
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top, rgba(14, 165, 233, 0.16), transparent 30%),
+          linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+        color: #0f172a;
+        font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(60rem, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        padding: 1.25rem 0 0;
+      }
+
+      .masthead {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+        padding: 1.25rem 1.5rem;
+        border-radius: 1.5rem;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+      }
+
+      .site-nav {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .site-nav a {
+        padding: 0.65rem 0.95rem;
+        text-decoration: none;
+        border-radius: 999px;
+        background: rgba(248, 250, 252, 0.92);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+      }
+
+      .site-nav a.is-active {
+        background: #0f172a;
+        color: #f8fafc;
+      }
+
+      .main-shell {
+        padding: 2.5rem 0 4rem;
+      }
+
+      .site-kicker,
+      .footer-inner {
+        color: #475569;
+      }
+
+      .site-kicker {
+        margin: 0.45rem 0 0;
+        max-width: 28rem;
+        line-height: 1.5;
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #475569;
+      }
+
+      .hero {
+        padding: 2rem;
+        border-radius: 1.5rem;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+      }
+
+      .hero h1 {
+        margin: 0.45rem 0 0.75rem;
+        font-size: clamp(2.4rem, 6vw, 4.4rem);
+        line-height: 0.95;
+      }
+
+      .hero p:last-child {
+        margin-bottom: 0;
+        max-width: 44rem;
+        line-height: 1.6;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 18rem) minmax(0, 42rem);
+        gap: 1.5rem;
+        align-items: start;
+        margin-top: 1.5rem;
+      }
+
+      .content-grid.single-column {
+        grid-template-columns: minmax(0, 42rem);
+      }
+
+      .info-card {
+        padding: 1.35rem 1.4rem;
+        border-radius: 1.25rem;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+      }
+
+      .info-card h2 {
+        margin: 0.45rem 0 0.75rem;
+        font-size: 1.3rem;
+      }
+
+      .site-footer {
+        padding: 0 0 2.5rem;
+      }
+
+      .footer-inner {
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 760px) {
+        .masthead {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="shell">
+        <div class="masthead">
+          <div>
+            <p class="eyebrow">rails_vue_vite demo</p>
+            <p class="site-kicker">HTML-first Rails with Vue as a focused enhancement layer.</p>
+          </div>
+          <nav class="site-nav">
+            <%= link_to "Home", root_path, class: ("is-active" if current_page?(root_path)) %>
+            <%= link_to "About", about_path, class: ("is-active" if current_page?(about_path)) %>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell main-shell">
+      <%= yield %>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>Rails owns routing and page HTML here. Vue only mounts where the page asks it to.</p>
+      </div>
+    </footer>
+  </body>
+</html>
