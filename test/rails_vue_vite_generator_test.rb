@@ -62,7 +62,10 @@ class RailsVueViteGeneratorTest < Rails::Generators::TestCase
       assert_includes content, "<router-view />"
     end
 
-    assert_file "app/controllers/spa_controller.rb"
+    assert_file "app/controllers/spa_controller.rb" do |content|
+      assert_includes content, "class SpaController < ActionController::Base"
+      assert_includes content, "render :index"
+    end
     assert_file "app/views/spa/index.html.erb" do |content|
       assert_includes content, "vite_javascript_tag"
     end

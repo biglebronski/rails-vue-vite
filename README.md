@@ -185,6 +185,16 @@ root "spa#index"
 get "*path", to: "spa#index", constraints: ->(request) { !request.xhr? && request.format.html? }
 ```
 
+Typical SPA controller:
+
+```ruby
+class SpaController < ActionController::Base
+  def index
+    render :index
+  end
+end
+```
+
 Typical shell view:
 
 ```erb
