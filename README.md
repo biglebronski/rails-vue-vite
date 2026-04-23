@@ -267,6 +267,7 @@ http://localhost:3000
 ```
 
 Vite runs on port `5173` for this demo.
+The Vite launcher script prefers an `nvm`-managed Node when one is installed so background task runners do not accidentally boot an older system Node.
 
 ### HTML Demo
 
@@ -301,6 +302,7 @@ http://localhost:3000
 ```
 
 Vite runs on port `5174` for this demo.
+The Vite launcher script prefers an `nvm`-managed Node when one is installed so background task runners do not accidentally boot an older system Node.
 
 ## Production Build And Deploy
 
